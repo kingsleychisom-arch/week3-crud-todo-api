@@ -42,6 +42,17 @@ app.get('/todos/completed', (req, res) => {
   res.json(completed); // Custom Read!
 });
 
+// GET Single - Read
+app.get('/todos/:id', (req, res) => {
+  const todo = todos.find((t) => t.id === Number(req.params.id));
+
+  if (!todo) {
+    return res.status(404).json({ error: 'Todo not found' });
+  }
+
+  res.status(200).json(todo);
+});
+
 app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Server error!' });
 });

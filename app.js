@@ -44,6 +44,11 @@ app.get('/todos/completed', (req, res) => {
   const completed = todos.filter((t) => t.completed);
   res.json(completed); // Custom Read!
 });
+// GET Active - Read
+app.get('/todos/active', (req, res) => {
+  const active = todos.filter((t) => !t.completed);
+  res.json(active);
+});
 
 // GET Single - Read
 app.get('/todos/:id', (req, res) => {
